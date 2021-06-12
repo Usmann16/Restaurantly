@@ -1,0 +1,207 @@
+
+{% load static %}
+
+<!doctype html>
+<!-- 
+* Bootstrap Simple Admin Template
+* Version: 2.0
+* Author: Alexis Luna
+* Copyright 2020 Alexis Luna
+* Website: https://github.com/alexis-luna/bootstrap-simple-admin-template
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Add promotion and deals</title>
+     <link href="{% static 'assets/vendor/fontawesome/css/fontawesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/fontawesome/css/solid.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/fontawesome/css/brands.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/master.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav id="sidebar" >
+            <div class="sidebar-header"  style="min-height: 13vh;">
+                    {% for instance in object_list%}
+                    {% if forloop.first %}
+                <h5 style="color:black; margin: 10% ">{{instance.Email}}</h5>
+                    {% endif %}
+                    {% endfor %}
+
+            </div>
+            <ul class="list-unstyled components text-secondary">
+                <li>
+                    <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="informationForms.html"><i class="fas fa-file-alt"></i>Add Information</a>
+                </li>
+                
+                <li>
+                    <a href="Reviews.html"><i class="fas fa-chart-bar"></i> Reviews</a>
+                </li>
+                <li>
+                    <a href="addDeals.html"><i class="fas fa-file-alt"></i> Add Promotion and Deal</a>
+                </li>
+
+                <li>
+                    <a onclick="location.href='{% url 'logout' %}'"> <i class="fas fa-sign-out-alt"></i> log out</a>
+                </li>
+               
+                
+                
+
+                
+            </ul>
+        </nav>
+        <div id="body" class="active">
+            <nav class="navbar navbar-expand-lg navbar-white bg-white">
+                <button type="button" id="sidebarCollapse" class="btn btn-light"><i class="fas fa-bars"></i><span></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <h2 style="padding: 20px"> Welcome to FoodStories</h2>
+                    <ul class="nav navbar-nav ml-auto">
+                        
+
+                    </ul>
+                </div>
+            </nav>
+            <div class="content">
+                <div class="container">
+                    <div class="page-title">
+                        <h3>Active Deals
+
+                        </h3>
+                    </div>
+                    <div class="box box-primary">
+                        <div class="box-body">
+                            <form method="post" name="removeDeals" action="removeDeals">
+                                {% csrf_token %}
+                            <table width="100%" class="table table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Price</th>
+                                        <th>Image</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for instance in object_list%}
+
+                                    <tr>
+                                        <td>{{instance.Name}}</td>
+                                        <td>{{instance.Description|truncatewords:'10'}}</td>
+                                        <td>{{instance.Price}}</td>
+                                        <td><img style="width:50px" src="{{instance.Image}}"></td>
+
+                                        <td class="text-right">
+
+                                            <button name="remove" class="btn btn-outline-danger btn-rounded"  value="{{instance.Name}}" type="submit"><i class="fas fa-trash" ></i></button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="container">
+                    <div class="page-title">
+                        <h3>Add Promotion and Deals</h3>
+                    </div>
+                    {% if message %}
+                            <div class="form-group">
+                              <p class="text-center" style="color: Green">{{message}}</p>
+                           </div>
+                        {% endif %}
+
+                    {% if error %}
+                            <div class="form-group">
+                              <p class="text-center" style="color: red">{{error}}</p>
+                           </div>
+                        {% endif %}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">Information Form</div>
+                                <div class="card-body"> 
+                                    <form method="post" name="addDeals"  action="addDeals" id="validation" class="needs-validation" enctype="multipart/form-data" novalidate accept-charset="utf-8">
+                                        {% csrf_token %}
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4">
+                                                <label for="Name">Name</label>
+                                                <input type="text" class="form-control" name="name" placeholder="Name" required>
+                                                <small class="form-text text-muted">Enter Name for Deal and Promotion.</small>
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                        <div class="line"></div><br>
+
+                                        
+                                        <div class="form-group row">
+                                                
+                                                <div class="col-sm-8">
+                                                    <label class="col-sm-2">Description</label>
+                                                    <textarea type="textfield" name="description" placeholder="Write about your deals" class="form-control" rows="6" cols="5"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="line"></div><br>
+
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="Price">Price</label>
+                                                    <input type="text" class="form-control" name="price" placeholder="Price" required>
+                                                    <small class="form-text text-muted">Enter Price for Deal and Promotion.</small>
+                                                    
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="line"></div><br>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="Price">Upload Image</label>
+                                                    <input type="file" id="img" name="img" accept="image/*" >
+                                                </div>
+
+
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 offset-sm-2">
+
+                                                     <button type="submit" class="btn btn-primary mb-2"><i class="fas fa-save"></i> Save</button>
+                                                </div>
+                                            </div>
+                                            
+
+
+                                      
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/form-validator.js' %}"></script>
+    <script src="{% static 'assets/js/script.js' %}"></script>
+
+</body>
+
+</html>

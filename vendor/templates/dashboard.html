@@ -1,0 +1,190 @@
+{% load static %}
+<!doctype html>
+<!-- 
+* Bootstrap Simple Admin Template
+* Version: 2.0
+* Author: Alexis Luna
+* Copyright 2020 Alexis Luna
+* Website: https://github.com/alexis-luna/bootstrap-simple-admin-template
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Restuarant Dashboard</title>
+     <link href="{% static 'assets/vendor/fontawesome/css/fontawesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/fontawesome/css/solid.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/fontawesome/css/brands.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/master.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/chartsjs/Chart.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/flagiconcss/css/flag-icon.min.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="wrapper">
+        {% block content %}
+        <nav id="sidebar" >
+            <div class="sidebar-header"  style="min-height: 13vh;">
+
+                    <h5 style="color:black; margin: 10% ">{{obj.Name}}</h5>
+
+                    
+
+              
+            </div>
+            <ul class="list-unstyled components text-secondary">
+                <li>
+                    <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="informationForms.html"><i class="fas fa-file-alt"></i>Add Information</a>
+                </li>
+                
+                <li>
+                    <a href="Reviews.html"><i class="fas fa-chart-bar"></i> Reviews</a>
+                </li>
+                <li>
+                    <a href="addDeals.html"><i class="fas fa-file-alt"></i> Add Promotion and Deal</a>
+                </li>
+
+                <li>
+                    <a onclick="location.href='{% url 'logout' %}'"> <i class="fas fa-sign-out-alt"></i> log out</a>
+                </li>
+               
+                
+                
+
+                
+            </ul>
+        </nav>
+        {% endblock %}
+        <div id="body" class="active">
+            <nav class="navbar navbar-expand-lg navbar-white bg-white">
+                <button type="button" id="sidebarCollapse" class="btn btn-light"><i class="fas fa-bars"></i><span></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+                    <h2 style="padding: 20px"> Welcome to FoodStories</h2>
+                    <ul class="nav navbar-nav ml-auto">
+
+                    </ul>
+                </div>
+            </nav>
+            <div class="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 page-header">
+                            <div class="page-pretitle">Overview</div>
+                            <h2 class="page-title">Dashboard</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="icon-big text-center">
+                                                <i class="orange fas fa-envelope"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="detail">
+                                                <p class="detail-subtitle">Reviews</p>
+                                                <span class="number">75</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            <i class="fas fa-envelope-open-text"></i> Total Reviews 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="icon-big text-center">
+                                                <i class="fas fa-bullhorn"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="detail">
+                                                <p class="detail-subtitle">Promotions</p>
+                                                <span class="number">{{obj2}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            <i class="fas fa-envelope-open-text"></i> Promotion and deals.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+
+                                <div class="col-md-12 page-header">
+                                    
+                                    <h2 class="page-title">Description</h2>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="content">
+                                           
+                                            <div class="canvas-wrapper">
+                                                <p>{{obj.Description}}</p>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="content">
+                                            
+                                            <div class="about-img">
+                                                <img src="{{obj.Image}}">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/chartsjs/Chart.min.js' %}"></script>
+    <script src="{% static 'assets/js/dashboard-charts.js' %}"></script>
+    <script src="{% static 'assets/js/script.js' %}"></script>
+</body>
+
+</html>

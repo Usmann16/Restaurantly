@@ -1,0 +1,435 @@
+{% load static %}
+{% load extra %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Reviews</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+    <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+<!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/icofont/icofont.min.css'%}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+
+  <!-- =======================================================
+  * Template Name: Restaurantly - v2.0.0
+  * Template URL: https://bootstrapmade.com/restaurantly-restaurant-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+ 
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="index.html">FoodStories</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#description">Description</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#review">Reviews</a></li>
+          
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+    <br><br>
+    <section  class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+          <div  class="col-lg-12 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div>
+                        <h3 style="color: #cda45e;">{{obj.Name}} </h3>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <span>9.9</span>
+                        
+                        
+                        
+                    </div>
+                    <br>
+                  <div class="about-img">
+                   
+                    <img src="{{obj.Image}}" alt="">
+                  </div>
+    
+                </div>
+
+                
+                
+                <div class="col-lg-6" >
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                    <section class="event" id="description" style="background: #1a1814; height: 550px;">
+                    <div class="row">
+                    <div class="col-lg-8 col-md-4" style="padding-left: 25px;" >
+                        <h3 style="color: #cda45e;">Description</h3>
+                        <p>{{obj.Description}}</p>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4" >
+                        <h4 style="color: #cda45e;"> Contact </h4>
+                        <p>{{obj.Address}}</p>
+                        <p>{{obj.City}}</p>
+                        <br>
+
+                        <p>{{obj.Email}}</p>
+                    </div>
+
+                </div>
+                </section>
+                </div>
+              <div class="col-lg-12">
+                <section class="about">
+                  <div class="container" data-aos="fade-up">
+                    <div class="section-title">
+                      <h2>Events</h2>
+                      <p>Organize your events at out Restuarant</p>
+                  </div>
+                    <div class="row ">
+                      {% if 'Birthday Parties' in obj.Event %}
+                    <div class="col-lg-3">
+                      <div class="container d-flex align-items-center justify-content-between">
+
+                          <nav class="nav-menu d-none d-lg-block">
+                            <ul>
+
+                              <li class="book-a-table text-center"><a >Birthday Party</a></li>
+                            </ul>
+                          </nav><!-- .nav-menu -->
+
+                        </div>
+                    </div>
+                      {% endif %}
+
+                      {% if 'Anniversary decors' in obj.Event %}
+                    <div class="col-lg-3">
+                      <div class="container d-flex align-items-center justify-content-between">
+
+                          <nav class="nav-menu d-none d-lg-block">
+                            <ul>
+
+                              <li class="book-a-table text-center"><a >Anniversary Decor</a></li>
+                            </ul>
+                          </nav><!-- .nav-menu -->
+
+                        </div>
+                    </div>
+                      {% endif %}
+
+
+                      {% if 'Thanksgiving' in obj.Event %}
+                    <div class="col-lg-3">
+                      <div class="container d-flex align-items-center justify-content-between">
+
+                          <nav class="nav-menu d-none d-lg-block">
+                            <ul>
+
+                              <li class="book-a-table text-center"><a >Thanksgiving</a></li>
+                            </ul>
+                          </nav><!-- .nav-menu -->
+
+                        </div>
+                    </div>
+                      {% endif %}
+
+
+                      </div>
+
+
+
+
+                  </div>
+
+
+                </section>
+              </div>
+
+                <div class="col-lg-12">
+
+                    <section id="events" class="events">
+                        <div class="container" data-aos="fade-up">
+                  
+                          <div class="section-title">
+                            <h2>Promotions</h2>
+                            <p>Promotion and Deals</p>
+                          </div>
+
+                          <div class="owl-carousel events-carousel" data-aos="fade-up" data-aos-delay="100">
+                            {% for con in deal %}
+                            <div class="row event-item">
+                              <div class="col-lg-6">
+                                <img src="{{con.Image}}" class="img-fluid" alt="">
+                              </div>
+                              <div class="col-lg-6 pt-4 pt-lg-0 content">
+                                <h3>{{con.Name}}</h3>
+                                <div class="price">
+                                  <p><span>RS.{{con.Price}}</span></p>
+                                </div>
+                                <p class="font-italic">
+                                  {{con.Description}}
+                                </p>
+
+                              </div>
+                            </div>
+                            {% endfor %}
+                          </div>
+
+                        </div>
+                      </section><!-- End Events Section -->
+
+                </div>
+
+
+                <div class="col-lg-12" id="review">
+                    <section id="testimonials" class="testimonials section-bg">
+                        <div class="container" data-aos="fade-up">
+                  
+                          <div class="section-title">
+                            <h2>Review Section</h2>
+                            <p>What they're saying about us</p>
+                          </div>
+                  
+                          <div class="owl-carousel testimonials-carousel" data-aos="zoom-in" data-aos-delay="100">
+                            {% for message in comments %}
+                  
+                            <div class="testimonial-item">
+
+                              <p>
+                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                {{message.reviews}}
+                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+
+                              </p>
+
+
+
+
+                              <img src="{% static 'assets/img/testimonials/testimonials-1.jpg' %}" class="testimonial-img" alt="">
+                              <h4>{{message.user}}</h4>
+                              <br>
+
+
+
+                              <h3 style="color:#cda45e">Admin</h3>
+
+                               <p>
+                                 {% for reply in rep|get_val:message.u_id %}
+                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                {{reply.replys}}
+                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                 <br>
+                                  {% endfor %}
+                              </p>
+                            </div>
+
+                            {% endfor %}
+                  
+
+
+                  
+                          </div>
+                  
+                        </div>
+                      </section><!-- End Testimonials Section -->
+
+                </div>
+
+
+                <!-- Review section -->
+
+                <div class="col-lg-12" >
+
+                  <section id="contact" class="contact" >
+                    <div class="container" data-aos="fade-up">
+              
+                      <div class="section-title">
+                        <h2>Review</h2>
+                        <p>Write a Review</p>
+                      </div>
+                    </div>
+                    {% if user.is_authenticated %}
+                    <div class="container" data-aos="fade-up">
+
+                        <div class="col-lg-12 mt-5 mt-lg-0">
+              
+                          <form action="ReviewPage.html" method="post" role="form" class="php-email-form">
+                            {% csrf_token %}
+                            <div class="form-group mt-3">
+                              <input type="text" class="form-control" name="subject" required  id="subject" placeholder="Title of  your review" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                              <div class="validate"></div>
+                            </div>
+                            <div class="form-group mt-3">
+                              <textarea class="form-control" name="message" rows="8" required data-rule="required" data-msg="Please write something for us" placeholder="Please write your Experience"></textarea>
+                              <div class="validate"></div>
+                            </div>
+                            <div class="mb-3">
+                              <div class="loading">Loading</div>
+                              <div class="error-message"></div>
+                              <div class="sent-message">Your message has been sent. Thank you!</div>
+                            </div>
+
+                            <div class="text-center"><button type="submit" name="res_name" value="{{obj.Name}}"   >Send Message</button></div>
+                            {% else %}
+                            <div class="section-title" >
+
+                              <p class="text-center" style="color:white;" > *Login first!    <a href="login.html">login</a></p>
+                            </div>
+
+                            {% endif %}
+                          </form>
+              
+                        </div>
+              
+                      
+              
+                    </div>
+                  </section>
+                  
+                  
+
+
+                </div> 
+                <!-- End Review Section -->
+
+
+
+                
+    
+              </div>
+          </div>
+
+
+
+          
+          
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-info">
+              <h3>Restaurantly</h3>
+              <p>
+                A108 Adam Street <br>
+                NY 535022, USA<br><br>
+                <strong>Phone:</strong> +1 5589 55488 55<br>
+                <strong>Email:</strong> info@example.com<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="https://www.facebook.com/FoodStories-100795188787386" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="https://www.instagram.com/yourfooddudes/" class="instagram"><i class="bx bxl-instagram"></i></a>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#description">Description</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#events">Events</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#review">Reviews</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <!-- <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#chefs">Top Restaurant</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+            </ul>
+          </div> -->
+
+          <div class="col-lg-5 col-md-6 footer-newsletter">
+            <div data-aos="fade-up">
+        <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=COMSATS+University,+Lahore+Campus/@31.4027231,74.2104454,17z/data=!3m1!4b1!4m5!3m4!1s0x3918ffd0bc7c5f71:0x879e9b82857bcd94!8m2!3d31.4027185!4d74.2126341?hl=en-GB" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>FoodStories</span></strong>. All Rights Reserved
+      </div>
+      
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+
+  <!-- Vendor JS Files -->
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+  <script src="{% static 'assets/js/filters.js' %}"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,433 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Home</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/icofont/icofont.min.css'%}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  
+
+  <!-- ======= Header ======= -->
+
+
+  <header id="header" class="fixed-top">
+
+    <div class="container d-flex align-items-center justify-content-between">
+
+
+      <h1 class="logo"><a href="index.html">FoodStories</a></h1>
+<!--       Uncomment below if you prefer to use an image logo -->
+<!--       <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="index.html">Home</a></li>
+          <li><a href="#about">About</a></li>
+         
+          
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#chefs">Top Restaurant</a></li>
+          <li><a href="contactUs.html">Contact</a></li>
+          {% if not user.is_authenticated %}
+          <li class="book-a-table text-center"><a href="login.html">Login</a></li>
+          {% else %}
+           <li class="book-a-table text-center" ><a onclick="location.href='{% url 'logout' %}'">{{user.username}}</a></li>
+          {% endif %}
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container position-relative text-center " data-aos="zoom-in" data-aos-delay="100">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1>Welcome to <span>FoodStories</span></h1>
+          <h2>The food dudes!</h2>
+
+
+          
+        <div>
+          <form action="restaurantList.html" method="post" novalidate="novalidate">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-lg-12" >
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+                            <input type="text" class="form-control search-slt" placeholder="Lahore..." disabled>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+                            <select class="form-control search-slt" name="foodtype" title="Food Types">
+                                <option value="Desi">Desi</option>
+                                <option value="Continental">Continental</option>
+                                <option value="Chinese">Chinese</option>
+                                <option value="Coffee">Coffee Shop</option>
+
+                            </select>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+                            <button type="submit" class="btn  wrn-btn" style="background-color: #CDA45E;">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+
+        
+        </div>
+
+
+
+        
+        
+
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
+            <div class="about-img">
+              <img src="{% static 'assets/img/about.jpg' %}" alt="">
+            </div>
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+            <h3 style="color: #CDA45E;">About Us</h3>
+            <p class="font-italic">
+              The ideal spot to pick a place for your hunger cravings, without the fear of having your money wasted.
+               We at FoodStories provide you opinions from people around you, helping you find a restaurant of your choice.
+              Search, review and find restaurants for your perfect experience of dining, eating and celebrating events with us.
+            </p>
+            
+              
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Why Us Section ======= -->
+<!--    <section id="why-us" class="why-us">-->
+<!--      <div class="container" data-aos="fade-up">-->
+
+<!--        <div class="section-title">-->
+<!--          <h2>Why Us</h2>-->
+<!--          <p>Who we are</p>-->
+<!--        </div>-->
+
+<!--        <div class="row">-->
+
+<!--          <div class="col-lg-4">-->
+<!--            <div class="box" data-aos="zoom-in" data-aos-delay="100">-->
+<!--              <span>01</span>-->
+<!--              <h4>Lorem Ipsum</h4>-->
+<!--              <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="col-lg-4 mt-4 mt-lg-0">-->
+<!--            <div class="box" data-aos="zoom-in" data-aos-delay="200">-->
+<!--              <span>02</span>-->
+<!--              <h4>Repellat Nihil</h4>-->
+<!--              <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="col-lg-4 mt-4 mt-lg-0">-->
+<!--            <div class="box" data-aos="zoom-in" data-aos-delay="300">-->
+<!--              <span>03</span>-->
+<!--              <h4> Ad ad velit qui</h4>-->
+<!--              <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </section>&lt;!&ndash; End Why Us Section &ndash;&gt;-->
+
+
+ 
+  
+
+    
+   
+    <!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery">
+
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Gallery</h2>
+          <p>Some photos from Our Restaurant</p>
+        </div>
+      </div>
+
+      <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row no-gutters">
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="assets/img/gallery/Burger Lab.jpg" class="venobox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/Burger Lab.jpg' %}" alt="" height="100%" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/Freddy Cafe.jpg' %}" class="venobox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/Freddy Cafe.jpg' %}" alt="" height="100%" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/Dagwood.jpg' %}" class="venobox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/Dagwood.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/Gloria Jeans.jpg' %}" class="venobox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/Gloria Jeans.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/Cup Shup.jpg' %}" class="venobox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/Cup Shup.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/Spice Bazaar.jpg' %}" class="venobox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/Spice Bazaar.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/KFC.png' %}" class="venobox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/KFC.png' %}" alt="" height="100%" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/Subway.jpg' %}" class="venobox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/Subway.jpg' %}" alt="" height="100%" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Gallery Section -->
+
+    <!-- ======= Chefs Section ======= -->
+    <section id="chefs" class="chefs">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Searches</h2>
+          <p>Top Restaurant</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="member" data-aos="zoom-in" data-aos-delay="100">
+              <img src="{% static 'assets/img/chefs/chefs-1.jpg' %}" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Walter White</h4>
+                  <span>Master Chef</span>
+                </div>
+                <div class="social">
+                  <a href=""><i class="icofont-twitter"></i></a>
+                  <a href=""><i class="icofont-facebook"></i></a>
+                  <a href=""><i class="icofont-instagram"></i></a>
+                  <a href=""><i class="icofont-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="member" data-aos="zoom-in" data-aos-delay="200">
+              <img src="{% static 'assets/img/chefs/chefs-2.jpg' %}" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Sarah Jhonson</h4>
+                  <span>Patissier</span>
+                </div>
+                <div class="social">
+                  <a href=""><i class="icofont-twitter"></i></a>
+                  <a href=""><i class="icofont-facebook"></i></a>
+                  <a href=""><i class="icofont-instagram"></i></a>
+                  <a href=""><i class="icofont-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="member" data-aos="zoom-in" data-aos-delay="300">
+              <img src="{% static 'assets/img/chefs/chefs-3.jpg' %}" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>William Anderson</h4>
+                  <span>Cook</span>
+                </div>
+                <div class="social">
+                  <a href=""><i class="icofont-twitter"></i></a>
+                  <a href=""><i class="icofont-facebook"></i></a>
+                  <a href=""><i class="icofont-instagram"></i></a>
+                  <a href=""><i class="icofont-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Chefs Section -->
+
+    
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-info">
+              <h3>Restaurantly</h3>
+              <p>
+                A108 Adam Street <br>
+                NY 535022, USA<br><br>
+                <strong>Phone:</strong> +1 5589 55488 55<br>
+                <strong>Email:</strong> info@example.com<br>
+              </p>
+              <div class="social-links mt-3">
+
+                <a href="https://www.facebook.com/FoodStories-100795188787386" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="https://www.instagram.com/yourfooddudes/" class="instagram"><i class="bx bxl-instagram"></i></a>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#gallery">Gallery</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <!-- <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#chefs">Top Restaurant</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+            </ul>
+          </div> -->
+
+          <div class="col-lg-5 col-md-6 footer-newsletter">
+            <div data-aos="fade-up">
+        <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=COMSATS+University,+Lahore+Campus/@31.4027231,74.2104454,17z/data=!3m1!4b1!4m5!3m4!1s0x3918ffd0bc7c5f71:0x879e9b82857bcd94!8m2!3d31.4027185!4d74.2126341?hl=en-GB" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>FoodStories</span></strong>. All Rights Reserved
+      </div>
+      
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

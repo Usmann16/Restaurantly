@@ -1,0 +1,310 @@
+{% load static %}
+<!doctype html>
+<!--
+* Bootstrap Simple Admin Template
+* Version: 2.0
+* Author: Alexis Luna
+* Copyright 2020 Alexis Luna
+* Website: https://github.com/alexis-luna/bootstrap-simple-admin-template
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Add Information </title>
+    <link href="{% static 'assets/vendor/fontawesome/css/fontawesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/fontawesome/css/solid.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/fontawesome/css/brands.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/master.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav id="sidebar" >
+            <div class="sidebar-header"  style="min-height: 13vh;">
+
+                <h5 style="color:black; margin: 10% ">{{obj.Name}}</h5>
+
+            </div>
+            <ul class="list-unstyled components text-secondary">
+                <li>
+                    <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="informationForms.html"><i class="fas fa-file-alt"></i>Add Information</a>
+                </li>
+
+                <li>
+                    <a href="Reviews.html"><i class="fas fa-chart-bar"></i> Reviews</a>
+                </li>
+                <li>
+                    <a href="addDeals.html"><i class="fas fa-file-alt"></i> Add Promotion and Deal</a>
+                </li>
+                <li>
+                    <a onclick="location.href='{% url 'logout' %}'"> <i class="fas fa-sign-out-alt"></i> log out</a>
+                </li>
+
+
+
+            </ul>
+        </nav>
+        <div id="body" class="active">
+            <nav class="navbar navbar-expand-lg navbar-white bg-white">
+                <button type="button" id="sidebarCollapse" class="btn btn-light"><i class="fas fa-bars"></i><span></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <h2 style="padding: 20px"> Welcome to FoodStories</h2>
+                    <ul class="nav navbar-nav ml-auto">
+
+
+                    </ul>
+                </div>
+            </nav>
+            <div class="content">
+                <div class="container">
+                    <div class="page-title">
+                        <h3>Add Restuarant Information</h3>
+                    </div>
+                    {% if message %}
+                            <div class="form-group">
+                              <p class="text-center" style="color: Green">{{message}}</p>
+                           </div>
+                        {% endif %}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">Information Form</div>
+                                <div class="card-body">
+                                    <form method="post" action="informationForms.html" name="information" enctype="multipart/form-data" class="needs-validation" novalidate accept-charset="utf-8">
+                                        {% csrf_token %}
+                                        <div class="form-row col-lg-12">
+                                            <div class="form-group col-md-6">
+                                                <label for="email">Email</label>
+
+                                                {% if user.is_authenticated %}
+                                                <input type="email" class="form-control" name="email" id="email"  value="{{user.email}}" readonly required>
+                                                {% else %}
+                                                <input type="email" class="form-control" name="email" id="email"   placeholder="Email" required>
+                                                {% endif %}
+                                                <small class="form-text text-muted">Enter a valid email address.</small>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter your email address.</div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="password">Name</label>
+                                               {% if user.is_authenticated %}
+                                                <input type="input" class="form-control" name="name" id="name" value="{{user.username}}" readonly required>
+                                                {% else %}
+                                                <input type="input" class="form-control" name="name" id="name" placeholder="Name" required>
+                                                {% endif %}
+
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter your password.</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address">Address</label>
+                                            {% if context.Address is not None %}
+                                            <input type="text" class="form-control" name="address" value="{{context.Address}}" required>
+                                            {% else %}
+                                            <input type="text" class="form-control" name="address" placeholder="1234 Main St, Unit, Building, or Floor" required>
+                                            {% endif %}
+                                            <div class="valid-feedback">Looks good!</div>
+                                            <div class="invalid-feedback">Please enter your address.</div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="city">City</label>
+                                                {% if context.City is not None %}
+                                                <input type="text" class="form-control" name="city" value="{{context.City}}" required>
+                                                {% else %}
+                                                <input type="text" class="form-control" name="city" placeholder="City" required>
+                                                {% endif %}
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter your City.</div>
+                                            </div>
+
+                                            <div class="form-group col-md-2">
+                                                <label for="zip">Zip code</label>
+                                                {% if context.Zip is not None %}
+                                                <input type="text" class="form-control" name="zip" value="{{context.Zip}}"  required>
+                                                {% else %}
+                                                <input type="text" class="form-control" name="zip" placeholder="00000" required>
+                                                {% endif %}
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter a Zip code.</div>
+                                            </div>
+                                        </div><br>
+                                        <div class="line"></div><br>
+
+
+                                        <div class="form-group row">
+                                                <label class="col-sm-2">Description</label>
+                                                <div class="col-sm-10">
+                                                    {% if context.Description is not None %}
+                                                    <textarea type="textfield" spellcheck="true" name="description" class="form-control" rows="10" cols="50">{{context.Description}}</textarea>
+                                                    {% else %}
+                                                    <textarea type="textfield" name="description" placeholder="Write about your Restuarant" class="form-control" rows="10" cols="50"></textarea>
+                                                    {% endif %}
+                                                </div>
+                                            </div><br>
+                                            <div class="line"></div><br>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-2">Events <br>
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <div>
+                                                        {% if 'Birthday Parties' in context.Event %}
+                                                        <input name="event" type="checkbox" value="Birthday Parties" checked>
+                                                        {% else %}
+                                                        <input name="event" type="checkbox" value="Birthday Parties" >
+                                                        {% endif %}
+
+                                                        <label >Birthday Parties</label>
+                                                    </div>
+                                                    <div>
+                                                            {% if 'Anniversary decors' in context.Event %}
+                                                            <input name="event" type="checkbox" value="Anniversary decors" checked>
+                                                            {% else %}
+                                                            <input name="event" type="checkbox" value="Anniversary decors"  >
+                                                            {% endif %}
+                                                        <label >Anniversary decors</label>
+                                                    </div>
+                                                    <div>
+                                                                {% if 'Thanksgiving' in context.Event %}
+                                                                <input name="event" type="checkbox" value="Thanksgiving" checked>
+                                                                {% else %}
+                                                                <input name="event" type="checkbox" value="Thanksgiving" >
+                                                                {% endif %}
+                                                                <label for="option">Thanksgiving</label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                            <div class="line"></div><br>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-2">Food Type <br>
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <div>
+                                                        {% if 'Desi' in context.Food %}
+                                                        <input name="food" type="checkbox" value="Desi" checked>
+                                                        {% else %}
+                                                        <input name="food" type="checkbox" value="Desi" >
+                                                        {% endif %}
+                                                        <label for="option">Desi</label>
+                                                    </div>
+                                                    <div>
+                                                             {% if 'Continental' in context.Food %}
+                                                            <input name="food" type="checkbox" value="Continental" checked>
+                                                            {% else %}
+                                                            <input name="food" type="checkbox" value="Continental">
+                                                            {% endif %}
+                                                            <label for="option">Continental</label>
+                                                    </div>
+                                                    <div>
+                                                                {% if 'Chinese' in context.Food %}
+                                                                <input name="food" type="checkbox" value="Chinese" checked>
+                                                                {% else %}
+                                                                <input name="food" type="checkbox" value="Chinese" >
+                                                                {% endif %}
+                                                                <label for="option">Chinese</label>
+                                                    </div>
+                                                    <div>
+                                                                {% if 'Coffee shop' in context.Food %}
+                                                                <input name="food" type="checkbox" value="Coffee shop" checked>
+                                                                {% else %}
+                                                                <input name="food" type="checkbox" value="Coffee shop" >
+                                                                {% endif %}
+                                                                <label for="option">Coffee shop</label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                            <div class="line"></div><br>
+
+                                            <div class="form-group row">
+                                                    <label class="col-sm-2">Payment Methods  <br>
+                                                    </label>
+                                                    <div class="col-sm-10">
+                                                        <div>
+                                                            {% if 'Cash' in context.Payment %}
+                                                            <input name="payment" type="checkbox" value="Cash" checked>
+                                                            {% else %}
+                                                            <input name="payment" type="checkbox" value="Cash" >
+                                                            {% endif %}
+                                                            <label for="option">Cash</label>
+                                                        </div>
+                                                        <div>
+                                                                {% if 'Credit/Debit Card' in context.Payment %}
+                                                                <input name="payment" type="checkbox" value="Credit/Debit Card" checked>
+                                                                {% else %}
+                                                                <input name="payment" type="checkbox" value="Credit/Debit Card">
+                                                                {% endif %}
+                                                                <label for="option">Credit/Debit Card</label>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="line"></div><br>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="Price">Upload Image</label>
+                                                    {% if context.Image is not None%}
+                                                    <small class="form-text text-muted"><img src="{{context.Image}}" style="height:50px">{{context.Image}}</small>
+                                                    <input type="file"  name="image" value="{{context.Image}}" accept="image/*" >
+                                                    {% else %}
+                                                    <input type="file"  name="image"   accept="image/*" required>
+                                                    {% endif %}
+
+                                                </div>
+
+
+
+
+                                            </div>
+                                        <br>
+
+
+
+
+                                            <div class="line"></div><br>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 offset-sm-2">
+
+                                                    <button type="submit" class="btn btn-primary mb-2"><i class="fas fa-save"></i> Save</button>
+                                                </div>
+                                            </div>
+
+
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/form-validator.js' %}"></script>
+    <script src="{% static 'assets/js/script.js' %}"></script>
+
+</body>
+
+</html>
